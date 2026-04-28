@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout>
 
   <!-- HERO -->
-  <section id="hero" class="relative h-[500px] flex items-center text-white overflow-hidden">
+  <section id="hero" class="relative h-auto md:h-[500px] py-16 md:py-0 flex items-center text-white overflow-hidden">
 
     <!-- BG -->
     <div class="absolute inset-0 bg-gradient-to-r from-[#0a1f3d] via-[#0c2b4f] to-[#0f5132]"></div>
@@ -13,38 +13,40 @@ import Layout from '../layouts/Layout.astro';
     <!-- LIGHT -->
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(34,197,94,0.22),transparent_45%)]"></div>
 
-    <div class="relative max-w-7xl mx-auto px-6 grid grid-cols-2 gap-10 items-center w-full">
+    <div class="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center w-full">
 
       <!-- LEFT -->
-      <div class="max-w-lg">
+      <div class="max-w-lg text-center md:text-left">
 
-        <div class="-mt-10">
+        <div class="-mt-6 md:-mt-10">
 
           <p class="text-yellow-400 font-semibold mb-3 text-sm tracking-wide">
             IT, DATA PROCESSING & BUSINESS CONSULTING
           </p>
 
-          <h1 class="text-[54px] font-bold leading-[1.1]">
+          <h1 class="text-[32px] md:text-[54px] font-bold leading-[1.1]">
             We turn data<br />
             into <span class="text-yellow-400">value.</span>
           </h1>
 
-          <p class="text-gray-300 mt-5 text-[18px] leading-relaxed">
-            We help businesses optimize processes, structure data,<br />
+          <p class="text-gray-300 mt-5 text-[15px] md:text-[18px] leading-[1.8]">
+            We help businesses optimize processes,structure data,<br class="hidden md:block" />
             and implement digital solutions that drive growth.
           </p>
 
         </div>
 
-        <div class="flex gap-5 mt-12">
+        <!-- BUTTONS -->
+        <div class="flex flex-col md:flex-row gap-4 mt-8 md:mt-12">
           <button class="btn-primary">Our Services →</button>
           <button class="btn-outline">Contact Us</button>
         </div>
 
       </div>
 
+
       <!-- RIGHT -->
-      <div id="hero-visual" class="relative flex justify-center items-center h-full">
+      <div id="hero-visual" class="relative flex justify-center items-center h-full mt-10 md:mt-0">
 
         <!-- ENERGY CORE -->
         <div class="energy-core"></div>
@@ -70,7 +72,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- LOGO -->
         <img 
           src="/big_logo_Padma_Nexus.png"
-          class="logo-ultra w-[700px] relative z-10"
+          class="logo-ultra w-[300px] md:w-[700px] relative z-10"
           alt="Padma Nexus"
         />
 
@@ -79,15 +81,16 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="py-20 bg-gray-100 text-center">
 
-    <h2 class="text-3xl font-bold">Our Services</h2>
-    <p class="text-gray-500 mt-3">
+  <!-- SERVICES -->
+  <section class="py-16 md:py-20 bg-gray-100 text-center">
+
+    <h2 class="text-2xl md:text-3xl font-bold">Our Services</h2>
+    <p class="text-gray-500 mt-3 text-sm md:text-base">
       Practical solutions tailored to your business needs.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-12 max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-10 md:mt-12 max-w-7xl mx-auto px-6">
 
       <div class="card">
         <div class="text-3xl mb-4">📊</div>
@@ -133,34 +136,30 @@ import Layout from '../layouts/Layout.astro';
 
   </section>
 
-  <!-- CURSOR INTERACTION -->
+
+  <!-- CURSOR INTERACTION (тільки desktop) -->
   <script>
     const hero = document.getElementById('hero');
     const visual = document.getElementById('hero-visual');
 
-    hero.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
+    if (window.innerWidth > 768) {
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
 
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-      const moveX = x * 12;
-      const moveY = y * 12;
+        visual.style.transform = `
+          translate(${x * 12}px, ${y * 12}px)
+          rotateX(${y * -6}deg)
+          rotateY(${x * 6}deg)
+        `;
+      });
 
-      visual.style.transform = `
-        translate(${moveX}px, ${moveY}px)
-        rotateX(${y * -6}deg)
-        rotateY(${x * 6}deg)
-      `;
-    });
-
-    hero.addEventListener('mouseleave', () => {
-      visual.style.transform = `
-        translate(0,0)
-        rotateX(0deg)
-        rotateY(0deg)
-      `;
-    });
+      hero.addEventListener('mouseleave', () => {
+        visual.style.transform = `translate(0,0) rotateX(0) rotateY(0)`;
+      });
+    }
   </script>
 
 </Layout>
