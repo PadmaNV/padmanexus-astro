@@ -1,17 +1,166 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+
+  <!-- HERO -->
+  <section id="hero" class="relative h-[500px] flex items-center text-white overflow-hidden">
+
+    <!-- BG -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0a1f3d] via-[#0c2b4f] to-[#0f5132]"></div>
+
+    <!-- LIGHT -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(34,197,94,0.22),transparent_45%)]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 grid grid-cols-2 gap-10 items-center w-full">
+
+      <!-- LEFT -->
+      <div class="max-w-lg">
+
+        <div class="-mt-10">
+
+          <p class="text-yellow-400 font-semibold mb-3 text-sm tracking-wide">
+            IT, DATA PROCESSING & BUSINESS CONSULTING
+          </p>
+
+          <h1 class="text-[54px] font-bold leading-[1.1]">
+            We turn data<br />
+            into <span class="text-yellow-400">value.</span>
+          </h1>
+
+          <p class="text-gray-300 mt-5 text-[18px] leading-relaxed">
+            We help businesses optimize processes, structure data,<br />
+            and implement digital solutions that drive growth.
+          </p>
+
+        </div>
+
+        <div class="flex gap-5 mt-12">
+          <button class="btn-primary">Our Services →</button>
+          <button class="btn-outline">Contact Us</button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div id="hero-visual" class="relative flex justify-center items-center h-full">
+
+        <!-- ENERGY CORE -->
+        <div class="energy-core"></div>
+
+        <!-- RIPPLE -->
+        <div class="ripple big"></div>
+        <div class="ripple medium"></div>
+
+        <!-- ORBITS -->
+        <div class="orbit orbit-1">
+          <span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="orbit orbit-2">
+          <span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- PARTICLES -->
+        <div class="particles-ultra">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- LOGO -->
+        <img 
+          src="/big_logo_Padma_Nexus.png"
+          class="logo-ultra w-[700px] relative z-10"
+          alt="Padma Nexus"
+        />
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="py-20 bg-gray-100 text-center">
+
+    <h2 class="text-3xl font-bold">Our Services</h2>
+    <p class="text-gray-500 mt-3">
+      Practical solutions tailored to your business needs.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-12 max-w-7xl mx-auto px-6">
+
+      <div class="card">
+        <div class="text-3xl mb-4">📊</div>
+        <h3 class="font-semibold">Business Process Analysis</h3>
+        <p class="text-sm text-gray-500 mt-2">
+          We analyze your processes to improve efficiency.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="text-3xl mb-4">👥</div>
+        <h3 class="font-semibold">CRM Implementation</h3>
+        <p class="text-sm text-gray-500 mt-2">
+          We help you implement CRM systems.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="text-3xl mb-4">🗄️</div>
+        <h3 class="font-semibold">Data Processing</h3>
+        <p class="text-sm text-gray-500 mt-2">
+          Structure and transform data.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="text-3xl mb-4">🎨</div>
+        <h3 class="font-semibold">UI/UX Design</h3>
+        <p class="text-sm text-gray-500 mt-2">
+          Modern digital solutions.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="text-3xl mb-4">💼</div>
+        <h3 class="font-semibold">Consulting</h3>
+        <p class="text-sm text-gray-500 mt-2">
+          Expert business advice.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CURSOR INTERACTION -->
+  <script>
+    const hero = document.getElementById('hero');
+    const visual = document.getElementById('hero-visual');
+
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      const moveX = x * 12;
+      const moveY = y * 12;
+
+      visual.style.transform = `
+        translate(${moveX}px, ${moveY}px)
+        rotateX(${y * -6}deg)
+        rotateY(${x * 6}deg)
+      `;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      visual.style.transform = `
+        translate(0,0)
+        rotateX(0deg)
+        rotateY(0deg)
+      `;
+    });
+  </script>
+
+</Layout>

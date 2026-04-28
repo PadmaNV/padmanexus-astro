@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Padma Nexus</title>
+</head>
+
+<script>
+  const buttons = document.querySelectorAll('.lang-btn');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+
+      // remove active
+      buttons.forEach(b => b.classList.remove('active'));
+
+      // set active
+      btn.classList.add('active');
+
+      // change language (поки demo)
+      const lang = btn.textContent;
+
+      document.documentElement.lang = lang.toLowerCase();
+
+      console.log('Language switched to:', lang);
+    });
+  });
+</script>
+
+<script>
+  // NAV ACTIVE SWITCH
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+
+      // знімаємо active з усіх
+      navLinks.forEach(l => l.classList.remove('active'));
+
+      // додаємо до поточного
+      link.classList.add('active');
+
+    });
+  });
+</script>
+
+<body class="font-sans text-gray-800">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+
+      <!-- LOGO (збільшене) -->
+      <div class="flex items-center">
+        <img src="/logo_Padma_Nexus.png" class="h-14 w-auto" />
+      </div>
+
+      <!-- NAV -->
+      <nav class="hidden md:flex items-center gap-12" id="nav">
+
+        <button class="nav-link active">Home</button>
+        <button class="nav-link">Services</button>
+        <button class="nav-link">About</button>
+        <button class="nav-link">Why Us</button>
+        <button class="nav-link">Contact</button>
+
+      </nav>
+
+      <!-- RIGHT -->
+      <div class="flex items-center gap-6">
+
+        <!-- LANGUAGE -->
+        <div class="flex items-center gap-2 text-sm font-medium">
+          <button class="lang-btn active">EN</button>
+          <span class="text-gray-400">|</span>
+          <button class="lang-btn">SK</button>
+        </div>
+
+        <!-- CTA -->
+        <button class="btn-primary">
+          Contact Us
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="pt-[90px]">
+    <slot />
+  </main>
+
+</body>
+</html>
