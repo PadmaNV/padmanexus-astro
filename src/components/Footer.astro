@@ -1,0 +1,107 @@
+---
+const { t } = Astro.props;
+---
+
+<footer class="bg-gradient-to-r from-[#0a1f3d] to-[#0f5132] text-white pt-16 pb-8">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-4 gap-12">
+
+      <!-- LOGO + DESC -->
+      <div>
+        <img src="/logo_Padma_Nexus_v3.png" class="w-[160px] mb-5" alt="Padma Nexus" />
+
+        <p class="text-gray-300 text-sm leading-relaxed">
+          {t.footer.desc}
+        </p>
+
+        <!-- SOCIALS -->
+        <div class="flex gap-4 mt-6">
+          <div class="footer-icon">in</div>
+          <div class="footer-icon">✉</div>
+          <div class="footer-icon">◎</div>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div>
+        <h4 class="font-semibold mb-4">{t.footer.quickLinks}</h4>
+
+        <ul class="space-y-3 text-gray-300">
+          <li><a href="#hero" class="footer-link">{t.footer.links.home}</a></li>
+          <li><a href="#services" class="footer-link">{t.footer.links.services}</a></li>
+          <li><a href="#about" class="footer-link">{t.footer.links.about}</a></li>
+          <li><a href="#about" class="footer-link">{t.footer.links.why}</a></li>
+          <li><a href="#contact" class="footer-link">{t.footer.links.contact}</a></li>
+        </ul>
+      </div>
+
+      <!-- SERVICES -->
+      <div>
+        <h4 class="font-semibold mb-4">{t.footer.services}</h4>
+
+        <ul class="space-y-3 text-gray-300">
+          <li>{t.services.items[0].title}</li>
+          <li>{t.services.items[1].title}</li>
+          <li>{t.services.items[2].title}</li>
+          <li>{t.services.items[3].title}</li>
+          <li>{t.services.items[4].title}</li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div>
+        <h4 class="font-semibold mb-4">{t.footer.contact}</h4>
+
+        <ul class="space-y-4 text-gray-300 text-sm">
+
+          <!-- EMAIL -->
+          <li class="flex items-center gap-3">
+            <span>✉</span>
+
+            <a
+              href="mailto:info@padmanexus.com?subject=Business%20Inquiry&body=Hello%20Padma%20Nexus,"
+              class="footer-link"
+            >
+              info@padmanexus.com
+            </a>
+          </li>
+
+          <!-- ADDRESS -->
+          <li class="flex items-start gap-3">
+            <span>📍</span>
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Saratovska+5898+841+02+Bratislava+Slovakia"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link"
+            >
+              Saratovská 5898<br />
+              841 02 Bratislava<br />
+              Slovakia
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+
+      <p>{t.footer.rights}</p>
+
+      <div class="flex gap-6 mt-4 md:mt-0">
+        <a href="#" class="footer-link">{t.footer.privacy}</a>
+        <a href="#" class="footer-link">{t.footer.terms}</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>

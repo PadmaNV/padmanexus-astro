@@ -1,0 +1,104 @@
+---
+const { t } = Astro.props;
+---
+
+<section id="services" class="relative py-20 bg-gray-50 overflow-hidden">
+
+  <!-- GREEN GLOW BACKGROUND -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[500px] h-[200px] bg-green-400/20 blur-[120px] rounded-full"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 text-center">
+
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+      {t.services.title}
+    </h2>
+
+    <div class="w-16 h-[3px] bg-green-500 mx-auto mt-3 rounded"></div>
+
+    <p class="text-gray-500 mt-4 max-w-xl mx-auto">
+      {t.services.subtitle}
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-14">
+
+      {t.services.items.map((item, i) => (
+
+        <div class="service-card group">
+
+          <!-- ICON -->
+          <div class="icon-circle">
+
+            {i === 0 && (
+              <svg class="icon-animated" viewBox="0 0 24 24">
+                <path class="line" d="M3 20h18" />
+                <path class="line" d="M5 15l4-4 4 3 6-7" />
+                <circle class="node" cx="19" cy="7" r="1.8" />
+              </svg>
+            )}
+
+            {i === 1 && (
+              <svg class="icon-animated" viewBox="0 0 24 24">
+                <circle class="line" cx="8" cy="8" r="3" />
+                <circle class="line" cx="16" cy="8" r="3" />
+                <path class="line" d="M2 20c0-3 4-5 6-5s6 2 6 5" />
+                <path class="line" d="M12 20c0-2 3-4 4-4s4 2 4 4" />
+              </svg>
+            )}
+
+            {i === 2 && (
+              <svg class="icon-animated" viewBox="0 0 24 24">
+                <ellipse class="line" cx="12" cy="5" rx="7" ry="3" />
+                <path class="line" d="M5 5v6c0 1.7 3 3 7 3s7-1.3 7-3V5" />
+                <path class="line" d="M5 11v6c0 1.7 3 3 7 3s7-1.3 7-3v-6" />
+                <circle class="node" cx="12" cy="14" r="1.2" />
+              </svg>
+            )}
+
+            {i === 3 && (
+              <svg class="icon-animated" viewBox="0 0 24 24">
+                <rect class="line" x="3" y="4" width="18" height="14" rx="2" />
+                <path class="line" d="M3 10h18" />
+                <circle class="node" cx="7" cy="7" r="1" />
+                <circle class="node" cx="11" cy="7" r="1" />
+                <circle class="node" cx="15" cy="7" r="1" />
+              </svg>
+            )}
+
+            {i === 4 && (
+              <svg class="icon-animated" viewBox="0 0 24 24">
+                <path class="line" d="M6 12h12" />
+                <circle class="line" cx="8" cy="8" r="2" />
+                <path class="line" d="M5 16c0-2 2-3 3-3s3 1 3 3" />
+                <circle class="line" cx="16" cy="8" r="2" />
+                <path class="line" d="M13 16c0-2 2-3 3-3s3 1 3 3" />
+              </svg>
+            )}
+
+          </div>
+
+          <!-- TITLE -->
+          <h3 class="text-[16px] font-semibold text-gray-800">
+            {item.title}
+          </h3>
+
+          <!-- DESC -->
+          <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+            {item.desc}
+          </p>
+
+          <!-- ARROW -->
+          <div class="mt-4 opacity-0 translate-y-2 transition duration-300 group-hover:opacity-100 group-hover:translate-y-0 text-green-500 text-lg">
+            →
+          </div>
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>

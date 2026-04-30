@@ -1,95 +1,59 @@
 ---
 import '../styles/global.css';
+
+const { lang = "en", title = "Padma Nexus" } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
 
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="shortcut icon" href="/favicon.png" />
+  <title>{title}</title>
 
-  <title>Padma Nexus</title>
+  <!-- SEO -->
+  <link rel="alternate" hreflang="en" href="https://padmanexus.com/" />
+  <link rel="alternate" hreflang="sk" href="https://padmanexus.com/sk/" />
+
+  <link rel="icon" href="/favicon.png" />
 </head>
 
 <body class="font-sans text-gray-800">
 
-  <!-- HEADER -->
-  <header class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
-    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+  <slot />
 
-      <!-- LOGO -->
-      <div class="flex items-center">
-        <img src="/logo_Padma_Nexus.png" class="h-14 w-auto" />
-      </div>
-
-      <!-- NAV -->
-      <nav class="hidden md:flex items-center gap-12" id="nav">
-        <button class="nav-link active">Home</button>
-        <button class="nav-link">Services</button>
-        <button class="nav-link">About</button>
-        <button class="nav-link">Why Us</button>
-        <button class="nav-link">Contact</button>
-      </nav>
-
-      <!-- RIGHT -->
-      <div class="flex items-center gap-6">
-
-        <!-- LANGUAGE -->
-        <div class="flex items-center gap-2 text-sm font-medium">
-          <button class="lang-btn active">EN</button>
-          <span class="text-gray-400">|</span>
-          <button class="lang-btn">SK</button>
-        </div>
-
-        <!-- CTA -->
-        <button class="btn-primary">
-          Contact Us
-        </button>
-
-      </div>
-
-    </div>
-  </header>
-
-  <!-- CONTENT -->
-  <main class="pt-[90px]">
-    <slot />
-  </main>
-
-  <!-- SCRIPTS -->
+  <!-- SCROLL SPY -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
 
-      // LANGUAGE SWITCH
-      const buttons = document.querySelectorAll('.lang-btn');
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
 
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
+      function updateActive() {
+        let current = "";
 
-          buttons.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
+        sections.forEach(section => {
+          const top = section.offsetTop - 140;
 
-          const lang = btn.textContent;
-          document.documentElement.lang = lang.toLowerCase();
-
-          console.log('Language switched to:', lang);
+          if (window.scrollY >= top) {
+            current = section.getAttribute("id");
+          }
         });
-      });
 
-      // NAV ACTIVE SWITCH
-      const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.classList.remove("active");
 
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-
-          navLinks.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
-
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+          }
         });
-      });
+      }
+
+      window.addEventListener("scroll", updateActive);
+
+      // запуск при загрузці
+      updateActive();
 
     });
   </script>

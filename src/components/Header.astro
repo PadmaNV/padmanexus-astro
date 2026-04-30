@@ -1,0 +1,111 @@
+---
+const { t, lang } = Astro.props;
+---
+
+<header class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+  <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+
+    <!-- LOGO -->
+    <img src="/logo_Padma_Nexus.png" class="h-12 w-auto" alt="Padma Nexus" />
+
+    <!-- DESKTOP NAV -->
+    <nav class="hidden md:flex items-center gap-10">
+
+      <a href="#hero" class="nav-link active">{t.nav.home}</a>
+      <a href="#services" class="nav-link">{t.nav.services}</a>
+      <a href="#about" class="nav-link">{t.nav.about}</a>
+      <a href="#about" class="nav-link">{t.nav.why}</a>
+      <a href="#contact" class="nav-link">{t.nav.contact}</a>
+
+    </nav>
+
+    <!-- RIGHT -->
+    <div class="flex items-center gap-4">
+
+      <!-- LANGUAGE -->
+      <div class="hidden md:flex items-center gap-2 text-sm font-medium">
+        <a href="/" class={`lang-btn ${lang === 'en' ? 'active' : ''}`}>EN</a>
+        <span class="text-gray-400">|</span>
+        <a href="/sk" class={`lang-btn ${lang === 'sk' ? 'active' : ''}`}>SK</a>
+      </div>
+
+      <!-- CTA -->
+      <a href="#contact" class="hidden md:inline-block btn-primary px-5 py-2 text-sm">
+        {t.cta.contact}
+      </a>
+
+      <!-- BURGER -->
+      <button id="burger-btn" class="md:hidden text-2xl">
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+</header>
+
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu"
+     class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden">
+
+  <div class="absolute top-0 left-0 w-full h-full bg-white flex flex-col">
+
+    <!-- TOP -->
+    <div class="flex items-center justify-between px-6 py-4 border-b">
+      <img src="/logo_Padma_Nexus.png" class="h-10" />
+      <button id="close-btn" class="text-2xl">✕</button>
+    </div>
+
+    <!-- NAV -->
+    <div class="flex flex-col items-center justify-center flex-1 gap-8 text-xl font-semibold">
+
+      <a href="#hero" class="nav-link">{t.nav.home}</a>
+      <a href="#services" class="nav-link">{t.nav.services}</a>
+      <a href="#about" class="nav-link">{t.nav.about}</a>
+      <a href="#about" class="nav-link">{t.nav.why}</a>
+      <a href="#contact" class="nav-link">{t.nav.contact}</a>
+
+      <!-- LANG -->
+      <div class="flex gap-4 mt-6 text-lg">
+        <a href="/" class={`lang-btn ${lang === 'en' ? 'active' : ''}`}>EN</a>
+        <a href="/sk" class={`lang-btn ${lang === 'sk' ? 'active' : ''}`}>SK</a>
+      </div>
+
+      <!-- CTA -->
+      <a href="#contact" class="btn-primary px-8 py-4 mt-6 text-lg">
+        {t.cta.contact}
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  const burger = document.getElementById('burger-btn');
+  const close = document.getElementById('close-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  if (burger && close && menu) {
+
+    burger.addEventListener('click', () => {
+      menu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+
+    close.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    });
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+  }
+</script>
